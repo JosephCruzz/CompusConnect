@@ -3,31 +3,40 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-
-var swaggerJsDoc = require("swagger-jsdoc");
-var swaggerUI = require("swagger-ui-express");
-var app = express();
+const swaggerJsDoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
+var publicacionesRouter = require("./routes/publicacionesRoutes");
 
-const options = {
+var app = express();
+
+// Configuración de Swagger
+const swaggerOptions = {
   definition: {
-    openapi: "3.0.3",
+    openapi: "3.0.0",
     info: {
-      title: "Campus Connect Api Documentation",
-      version: "0.1",
+      title: "CampusConnect API",
+      version: "1.0.0",
+      description:
+        "API para la gestión de publicaciones, usuarios y eventos de CampusConnect",
+      contact: {
+        name: "CampusConnect Team",
+      },
     },
     servers: [
       {
-        url: "http://localhost:3000/api",
+        url: "http://localhost:3000",
+        description: "Servidor de desarrollo",
       },
     ],
   },
   apis: ["./routes/*.js"],
 };
-const specs = swaggerJsDoc(options);
-app.use("/api/docs", swaggerUI.serve, swaggerUI.setup(specs));
+
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
@@ -38,8 +47,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+// Ruta de documentación Swagger
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/publicaciones", publicacionesRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -58,4 +71,3 @@ app.use(function (err, req, res, next) {
 });
 
 module.exports = app;
-app.listen(3000);

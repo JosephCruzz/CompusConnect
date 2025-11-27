@@ -1,2 +1,109 @@
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+
+# Editor / IDE
+.vscode/
+*.code-workspace
+.idea/
+*.iml
+*.sublime-workspace
+*.sublime-project
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+dist/
+build/
+.cache/
+.next/
+out/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.eggs/
+dist/
+build/
+pip-wheel-metadata/
+venv/
+ENV/
+env/
 .env
-node_modules
+.python-version
+.mypy_cache/
+.pytest_cache/
+
+# Java / Maven / Gradle
+target/
+build/
+out/
+*.class
+*.jar
+*.war
+*.ear
+.gradle/
+.gradle-wrapper.jar
+.settings/
+
+# .NET / C#
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.ilk
+*.pdb
+*.cache
+*.log
+
+# Compiled files / packages
+*.exe
+*.dll
+*.lib
+*.o
+*.a
+*.so
+
+# Logs and databases
+*.log
+logs/
+*.sql
+*.sqlite
+*.sqlite3
+
+# Archives
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Docker
+docker-compose.override.yml
+.docker/
+
+# Certificates and keys
+*.pem
+*.key
+*.crt
+
+# Coverage and reports
+coverage/
+coverage.xml
+reports/
+
+# Misc
+*.bak
+*.swp
+*.swo
+*.tmp
+!important
